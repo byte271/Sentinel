@@ -48,6 +48,7 @@ export { PipelineEngine } from './exec/pipeline.js';
 export type { PipelineKernel } from './exec/pipeline.js';
 export { TemporalBranchEngine } from './exec/temporal.js';
 export type { PlanBuilder, TemporalStateProvider } from './exec/temporal.js';
+<<<<<<< HEAD
 export { KillSwitch, AgentSession } from './exec/killswitch.js';
 export type {
   KillMode,
@@ -58,6 +59,8 @@ export type {
   KillOptions,
   CompensationRecord,
 } from './exec/killswitch.js';
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 // ---------------------------------------------------------------------------
 // Trace & Audit
@@ -70,6 +73,7 @@ export { MerkleChain } from './trace/merkle.js';
 // ---------------------------------------------------------------------------
 export { StateManager } from './info/state.js';
 export { DriftDetector } from './info/drift.js';
+<<<<<<< HEAD
 export { ContextGuardian } from './info/context.js';
 export type {
   ContextChunk,
@@ -77,6 +81,8 @@ export type {
   ContextSource,
   ContextGuardianOptions,
 } from './info/context.js';
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 // ---------------------------------------------------------------------------
 // Magic
@@ -93,8 +99,11 @@ export { SpecManager, SENTINEL_VERSION, SENTINEL_PROTOCOL_VERSION } from './spec
 // ---------------------------------------------------------------------------
 export { ApiLayer } from './api/transport.js';
 export { HttpServer } from './api/server.js';
+<<<<<<< HEAD
 export type { ServerConfig, AuthConfig, SentinelServices } from './api/server.js';
 export { TokenManager, defaultTokenPath } from './api/token.js';
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 // ---------------------------------------------------------------------------
 // Adapters
@@ -123,6 +132,7 @@ export type {
   EvidenceSources,
   EvidenceOverrides,
 } from './compliance/index.js';
+<<<<<<< HEAD
 export { OwaspAsiAssessor, ASI_RISKS, DEFAULT_CAPABILITIES } from './compliance/index.js';
 export type {
   Capability,
@@ -131,6 +141,8 @@ export type {
   AsiRiskResult,
   AsiAssessment,
 } from './compliance/index.js';
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 // ---------------------------------------------------------------------------
 // A2A Safety Bridge
@@ -144,6 +156,7 @@ export type {
   A2ABridgeOptions,
   BridgeKernel,
 } from './bridge/index.js';
+<<<<<<< HEAD
 export { OpenClawMemoryGuard } from './bridge/index.js';
 export type { IntegrityCheck, OpenClawBridgeOptions } from './bridge/index.js';
 export { TrustGraph } from './bridge/index.js';
@@ -209,6 +222,8 @@ export type {
 // ---------------------------------------------------------------------------
 export { renderPreventedFutures } from './tui/index.js';
 export type { PreventedAction, PreventedVerdict, PreventedFuturesData } from './tui/index.js';
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 // ---------------------------------------------------------------------------
 // Convenience helpers

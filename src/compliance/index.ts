@@ -9,6 +9,7 @@ export type {
   EvidenceSources,
   EvidenceOverrides,
 } from './nist.js';
+<<<<<<< HEAD
 export { OwaspAsiAssessor, ASI_RISKS, DEFAULT_CAPABILITIES } from './owasp.js';
 export type {
   Capability,
@@ -17,3 +18,5 @@ export type {
   AsiRiskResult,
   AsiAssessment,
 } from './owasp.js';
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce

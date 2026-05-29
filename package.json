@@ -1,6 +1,10 @@
 {
   "name": "sentinel",
+<<<<<<< HEAD
   "version": "0.2.0",
+=======
+  "version": "0.1.0",
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
   "description": "SENTINEL: AI-Operable Software Protocol — Shadow-first execution, temporal branching, and tamper-evident audit for AI actions",
   "author": "byte271",
   "repository": {
@@ -15,10 +19,14 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
+<<<<<<< HEAD
     "sentinel": "dist/cli/index.js",
     "sentinel-fw": "dist/cli/fw.js",
     "sentinel-compliance": "dist/cli/compliance.js",
     "sentinel-tui": "dist/cli/tui.js"
+=======
+    "sentinel": "dist/cli/index.js"
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
   },
   "scripts": {
     "build": "tsc",
@@ -37,6 +45,7 @@
     "merkle-chain",
     "rollback",
     "policy-engine",
+<<<<<<< HEAD
     "drift-detection",
     "nist",
     "compliance",
@@ -46,6 +55,9 @@
     "deterministic",
     "firewall",
     "multi-agent"
+=======
+    "drift-detection"
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
   ],
   "license": "MIT",
   "dependencies": {

@@ -19,7 +19,11 @@ export interface ServerConfig {
 
 export interface AuthConfig {
   /** Auth method. */
+<<<<<<< HEAD
   method: 'bearer' | 'api-key' | 'custom' | 'session' | 'token';
+=======
+  method: 'bearer' | 'api-key' | 'custom' | 'session';
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
   /** Auth middleware function. Return true to allow, false to deny. */
   middleware?: (req: IncomingMessage) => boolean | Promise<boolean>;
   /** Bearer token(s) — only used when method is 'bearer'. */
@@ -29,6 +33,7 @@ export interface AuthConfig {
   /** Signing secret for HMAC-signed tokens (optional). */
   hmacSecret?: string;
   /**
+<<<<<<< HEAD
    * Verifier for the `X-Sentinel-Token` header — only used when method is
    * 'token' (B4). Supply a `TokenManager` (or any object exposing a
    * constant-time `verify`) so the auto-generated, rotatable Sentinel token
@@ -36,6 +41,8 @@ export interface AuthConfig {
    */
   sentinelToken?: { verify(presented: string | undefined | null): boolean };
   /**
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
    * IdentityManager instance used when method is 'session'.
    * Session tokens issued by IdentityManager.createSession() are verified via
    * identityManager.validateSession(token), which performs full HMAC
@@ -132,7 +139,11 @@ export class HttpServer {
     if (this.config.corsOrigin) {
       res.setHeader('Access-Control-Allow-Origin', this.config.corsOrigin);
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+<<<<<<< HEAD
       res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Sentinel-Token, X-Api-Key');
+=======
+      res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
     }
 
     if (req.method === 'OPTIONS') {
@@ -381,6 +392,7 @@ export class HttpServer {
       return apiKey !== '' && (this.authConfig.apiKeys?.has(apiKey) ?? false);
     }
 
+<<<<<<< HEAD
     if (this.authConfig.method === 'token') {
       // B4: every endpoint requires the X-Sentinel-Token header, verified in
       // constant time against the auto-generated, rotatable Sentinel token.
@@ -389,6 +401,8 @@ export class HttpServer {
       return this.authConfig.sentinelToken.verify(presented);
     }
 
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
     return false;
   }
 

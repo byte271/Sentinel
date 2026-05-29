@@ -4,6 +4,7 @@
  * Re-exports the ShadowExecutor and ActionAdapter interface.
  */
 export * from './shadow.js';
+<<<<<<< HEAD
 export {
   KillSwitch,
   AgentSession,
@@ -20,3 +21,5 @@ export type {
   RecoveryPlan,
   KillOptions,
 } from './killswitch.js';
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce

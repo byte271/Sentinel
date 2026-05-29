@@ -16,8 +16,11 @@
 // a live SENTINEL instance.
 // ---------------------------------------------------------------------------
 
+<<<<<<< HEAD
 import { SENTINEL_VERSION } from '../spec/version.js';
 
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 /** The four core functions of the NIST AI Risk Management Framework. */
 export type NistFunction = 'GOVERN' | 'MAP' | 'MEASURE' | 'MANAGE';
 
@@ -123,9 +126,13 @@ interface ControlDefinition {
   evaluate: (e: ComplianceEvidence) => Pick<ControlAssessment, 'status' | 'detail' | 'recommendation'>;
 }
 
+<<<<<<< HEAD
 // B1: the compliance profile version is no longer an independent string that can
 // drift from the package version. It delegates to the single canonical source.
 const PROFILE_VERSION = SENTINEL_VERSION;
+=======
+const PROFILE_VERSION = '0.4.0';
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 const STATUS_WEIGHT: Record<ControlStatus, number> = {
   satisfied: 1,

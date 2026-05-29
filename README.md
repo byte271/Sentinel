@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SENTINEL — The Version That Ships Safety
 
 [![version](https://img.shields.io/badge/version-0.2.0-blue.svg)](./CHANGELOG.md)
@@ -31,6 +32,12 @@ See [CHANGELOG.md](./CHANGELOG.md) for the full list, including bug fixes (B1–
 
 > **Honest engineering note:** SENTINEL ships the real, tested *logical cores* of these features with zero heavy dependencies. Where the design references external infrastructure (a WASM runtime, full mTLS PKI/SPIFFE, PDF/D3 rendering), SENTINEL provides the deterministic core and clean extension points and documents the boundary rather than fabricating it. The replay log maps onto a SQLite/WASM store; the trust graph exports Mermaid/DOT for D3/SVG rendering; the compliance reports export Markdown/JSON for PDF rendering; observability exports OTLP JSON for any collector.
 
+=======
+# SENTINEL — AI-Operable Software Protocol
+
+A TypeScript framework for controlled AI execution. SENTINEL wraps every AI-initiated action in a structured lifecycle: **shadow-execute first, verify the diff, then commit to reality** — with full audit trails, policy enforcement, and rollback capability.
+
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 ## What It Does
 
 When an AI agent wants to take an action (write a file, call an API, modify a database), SENTINEL interposes a safety layer:
@@ -88,6 +95,7 @@ The orchestrator. Wires together all modules and drives the 10-step execution li
 
 The `TraceStore` can `snapshot()` / `restore()` its full state (traces, event log, and Merkle chain), and `persist()` / `hydrate()` against any `PersistenceStore` — so the tamper-evident audit trail survives process restarts.
 
+<<<<<<< HEAD
 ### Bridge (`bridge/`)
 - **A2ASafetyBridge** — the trust layer for the Agent-to-Agent (A2A) protocol. A2A standardizes how agents *communicate*; the bridge decides whether a delegation should be *trusted*. It attributes a trust level to the originating agent (never honoring self-claimed trust by default) and routes the requested action through the full kernel lifecycle (shadow → policy → approval → commit) before any real effect occurs. *"A2A handles communication. SENTINEL handles trust."*
 - **TrustGraph** *(v0.2.0)* — explicit graph model for multi-agent systems. Enforces delegation depth limits and **permission narrowing** (a child can only receive a subset of its parent's scopes; escalation attempts are flagged as anomalies), applies per-hop **trust decay**, and signs inter-agent messages with **HMAC-SHA256 + timestamp-bound nonces** for replay protection. Exports to Mermaid and Graphviz DOT. This is the engine behind **A2A Identity Verifier v2**: JIT, per-task permissions and per-message verification rather than per-session, header-asserted identity.
@@ -118,6 +126,14 @@ The `TraceStore` can `snapshot()` / `restore()` its full state (traces, event lo
 
 ### Prevented Futures (`tui/`) *(v0.2.0)*
 - **renderPreventedFutures** — renders a terminal frame showing the branching timeline of agent decisions: what was blocked vs. allowed, each with a risk score, the rule that caught it, and a one-line justification, plus an overall safety bar. Pure function, so it's driven from a live session, a recorded execution log, or firewall scans.
+=======
+### Compliance (`compliance/`)
+- **NistComplianceProfile** — maps SENTINEL's runtime safety mechanisms onto the four functions of the **NIST AI RMF 1.0** (Govern / Map / Measure / Manage), grades each control as satisfied / partial / unsatisfied, scores coverage, and emits an exportable JSON report with a prioritized gap list
+- **gatherEvidence** — derives a compliance evidence snapshot directly from a live SENTINEL instance
+
+### Bridge (`bridge/`)
+- **A2ASafetyBridge** — the trust layer for the Agent-to-Agent (A2A) protocol. A2A standardizes how agents *communicate*; the bridge decides whether a delegation should be *trusted*. It attributes a trust level to the originating agent (never honoring self-claimed trust by default) and routes the requested action through the full kernel lifecycle (shadow → policy → approval → commit) before any real effect occurs. *"A2A handles communication. SENTINEL handles trust."*
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 ## Temporal Branching
 
@@ -275,6 +291,7 @@ console.log(result.decision);  // 'trusted' | 'rejected' | 'pending_approval' | 
 console.log(result.committed); // whether it reached reality
 ```
 
+<<<<<<< HEAD
 ### Agent Firewall (v0.2.0)
 
 ```typescript
@@ -382,6 +399,8 @@ A fully-configured SENTINEL v0.2.0 deployment scores **95/100 (A+)** — 9 risks
 
 > Coverage reflects enabled capabilities at runtime. Run `sentinel-compliance --framework owasp-asi` for a live report, or `sentinel-tui --asi` for the dashboard view.
 
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 ## CLI
 
 ```bash
@@ -418,6 +437,7 @@ sentinel rollback <traceId>
 sentinel demo
 ```
 
+<<<<<<< HEAD
 ### `sentinel-fw` — Agent Firewall (v0.2.0)
 
 ```bash
@@ -442,12 +462,15 @@ sentinel-tui --input ./recording.json # render from a recorded execution log
 sentinel-tui --asi                   # OWASP ASI dashboard view
 ```
 
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 ## Project Structure
 
 ```
 src/
   kernel/       Kernel orchestrator + type definitions
   safe/         Policy engine, DSL, approval gateway, blast radius
+<<<<<<< HEAD
   exec/         Shadow executor, transactions, pipelines, temporal branching, kill switch
   firewall/     Agent Firewall + 32 detection patterns          (v0.2.0)
   replay/       Deterministic record & replay engine             (v0.2.0)
@@ -457,18 +480,32 @@ src/
   id/           Identity and authorization
   trace/        Trace store + Merkle chain (with snapshot/restore)
   info/         State management, drift detection, Context Guardian (v0.2.0)
+=======
+  exec/         Shadow executor, transactions, pipelines, temporal branching
+  id/           Identity and authorization
+  trace/        Trace store + Merkle chain (with snapshot/restore)
+  info/         State management + drift detection
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
   magic/        Recovery strategies
   api/          Transport layer + HTTP server
   adapters/     Reference filesystem adapter
   persist/      Durable persistence stores (in-memory + JSON file)
+<<<<<<< HEAD
   compliance/   NIST AI RMF + OWASP ASI compliance profiles
   bridge/       A2A safety bridge, Trust Graph, OpenClaw guard
   spec/         Protocol versioning
   cli/          sentinel, sentinel-fw, sentinel-compliance, sentinel-tui
+=======
+  compliance/   NIST AI RMF compliance profile
+  bridge/       A2A safety bridge (cross-agent trust layer)
+  spec/         Protocol versioning
+  cli/          CLI with full lifecycle demo + `nist` report
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
   index.ts      Public API exports + convenience factory
 ```
 
 Zero runtime dependencies beyond `chalk`, `commander`, and `uuid`. The test suite
+<<<<<<< HEAD
 (`npm test`, Vitest) has **214 passing tests** across 28 files covering the kernel,
 safety, execution, firewall, replay, memory, trust graph, kill switch, context guardian,
 observability, compliance (NIST + OWASP), trace/Merkle, persistence, and bridge modules.
@@ -480,6 +517,10 @@ npm install
 npm run build   # tsc — no type errors
 npm test        # vitest — 214 tests passing
 ```
+=======
+(`npm test`, Vitest) covers the kernel, safety, execution, trace/Merkle, persistence,
+compliance, and A2A bridge modules.
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 ## Limitations
 
@@ -489,11 +530,14 @@ npm test        # vitest — 214 tests passing
 - The Merkle chain and trace store are in-memory by default, but can be snapshotted and persisted via a `PersistenceStore` (a JSON-file backend ships in `persist/`); a higher-throughput deployment would add a database-backed store implementing the same interface.
 - The NIST compliance profile maps a curated, representative subset of AI RMF subcategories; it is a self-assessment aid, not a certified attestation.
 - Policy DSL supports basic patterns (`MATCHES`, `CONTAINS`, `==`, `!=`, `>`, `>=`, `<`, `<=`, `IN`). Complex policies should use programmatic rules.
+<<<<<<< HEAD
 - The **Agent Firewall** is deterministic regex matching — fast and explainable, but not a substitute for runtime sandboxing; pair it with the kernel lifecycle and OS-level isolation.
 - The **Deterministic Replay** log is storage-agnostic (in-memory + JSON export); a high-volume deployment maps it onto a SQLite/WASM-backed store implementing the same record interface.
 - **A2A Identity Verifier v2** ships HMAC-SHA256 message signing, replay-bound nonces, and JIT permission narrowing (via `TrustGraph`); full mTLS/SPIFFE PKI is an integration point, not bundled.
 - **OWASP ASI** scoring reflects the capabilities you enable; it is a configuration-aware self-assessment, not a certified attestation.
 - **Observability** emits OTLP-compatible JSON; route it to a collector or layer `@opentelemetry/sdk-node` for full SDK features.
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
 
 ## License
 
