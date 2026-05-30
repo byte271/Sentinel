@@ -8,8 +8,12 @@ it — seriously.
 
 | Version | Supported |
 |---------|-----------|
+<<<<<<< HEAD
 | 0.3.x   | Yes       |
 | 0.2.x   | Security fixes only |
+=======
+| 0.2.x   | Yes       |
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 | 0.1.x   | Security fixes only |
 | < 0.1   | No        |
 
@@ -39,12 +43,15 @@ In scope:
   escalation in the Trust Graph.
 - Firewall evasion: tool-call payloads that defeat the detection patterns for a
   documented threat category.
+<<<<<<< HEAD
 - **Shield control-plane bypass:** reaching the Shield protocol from a process
   that should not (token forgery, session-token replay, evading the watchdog), or
   an agent escaping the SIGKILL of its supervised process group.
 - **Sandbox escape:** a shadow run reaching real disk, network, clock, or
   entropy instead of the deterministic virtual environment, or forging a
   snapshot that passes `verifySnapshot()`.
+=======
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 Out of scope:
 
@@ -74,6 +81,7 @@ SENTINEL is designed with these principles. When deploying, keep them in mind:
 - **Defense in depth.** The Agent Firewall is a fast, explainable first line of
   defense. Pair it with the kernel's policy/approval lifecycle and runtime
   sandboxing for sensitive operations.
+<<<<<<< HEAD
 - **Out-of-band control (v0.3.0).** The Shield runs as a separate process; the
   agent connects as a child and cannot see, modify, or kill it. A kill sends
   `SIGKILL` to the agent's process group — it cannot be negotiated or ignored.
@@ -86,3 +94,5 @@ SENTINEL is designed with these principles. When deploying, keep them in mind:
 - **Deterministic sandbox is in-process (v0.3.0).** It removes nondeterminism
   (virtual FS/network/clock/PRNG) but shares the host VM; it is not a security
   isolation boundary. Compile to WASM for memory isolation of hostile code.
+=======
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7

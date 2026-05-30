@@ -34,7 +34,12 @@ describe('version single source of truth', () => {
     expect(report.profileVersion).toBe(SENTINEL_VERSION);
   });
 
+<<<<<<< HEAD
   it('the canonical version is 0.3.0 for this release', () => {
     expect(SENTINEL_VERSION).toBe('0.3.0');
+=======
+  it('the canonical version is 0.2.0 for this release', () => {
+    expect(SENTINEL_VERSION).toBe('0.2.0');
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
   });
 });

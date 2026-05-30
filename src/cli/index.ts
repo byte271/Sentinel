@@ -1,10 +1,20 @@
 #!/usr/bin/env node
 // ---------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 // Sentinel CLI — Shadow-First Execution for AI Actions
 // ---------------------------------------------------------------------------
 // The CLI version string is read from the single canonical source
 // (package.json via SENTINEL_VERSION), so it can never drift from the package
 // version (B1).
+<<<<<<< HEAD
+=======
+=======
+// Sentinel CLI v0.1.0 — Shadow-First Execution for AI Actions
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 // ---------------------------------------------------------------------------
 
 import { Command } from 'commander';
@@ -19,12 +29,24 @@ import {
   FilesystemAdapter,
   TemporalBranchEngine,
   gatherEvidence,
+<<<<<<< HEAD
   SENTINEL_VERSION,
   HttpServer,
   TokenManager,
   ShieldClient,
 } from '../index.js';
 import type { SentinelServices } from '../index.js';
+=======
+<<<<<<< HEAD
+  SENTINEL_VERSION,
+  HttpServer,
+  TokenManager,
+} from '../index.js';
+import type { SentinelServices } from '../index.js';
+=======
+} from '../index.js';
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 import type { ActorIdentity, ActionIntent, TimelineForkRequest, PruningStrategy } from '../kernel/types.js';
 
 // ---------------------------------------------------------------------------
@@ -76,10 +98,20 @@ function statusColor(s: string): string {
 // ---------------------------------------------------------------------------
 
 const program = new Command();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 program
   .name('sentinel')
   .description(`Sentinel v${SENTINEL_VERSION} — Shadow-First Execution for AI Actions`)
   .version(SENTINEL_VERSION);
+<<<<<<< HEAD
+=======
+=======
+program.name('sentinel').description('Sentinel v0.1.0 — Shadow-First Execution for AI Actions').version('0.1.0');
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 // -- execute ----------------------------------------------------------------
 program.command('execute <surface> <action> [params...]')
@@ -219,7 +251,15 @@ program.command('nist')
 
 // -- status -----------------------------------------------------------------
 program.command('status').description('System status').action(() => {
+<<<<<<< HEAD
   H(`Sentinel v${SENTINEL_VERSION} Status`);
+=======
+<<<<<<< HEAD
+  H(`Sentinel v${SENTINEL_VERSION} Status`);
+=======
+  H('Sentinel v0.1.0 Status');
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
   const surfaces = sentinel.kernel.listSurfaces();
   I(`Surfaces:   ${surfaces.length}`);
   for (const s of surfaces) console.log(`    ${chalk.bold(s.id)}  ${s.name}  (${s.type}, ${s.capabilities.length} caps)`);
@@ -615,6 +655,10 @@ program.command('demo').description('Full v0.3.0 lifecycle demo').action(async (
   console.log();
 });
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 // -- rotate-token (B4) -------------------------------------------------------
 program.command('rotate-token')
   .description('Rotate the X-Sentinel-Token used to authenticate the HTTP API')
@@ -690,6 +734,7 @@ function buildHttpServices(): SentinelServices {
   };
 }
 
+<<<<<<< HEAD
 // -- connect (S1) ------------------------------------------------------------
 program.command('connect')
   .description('Connect to a running Shield sidecar and scan a tool call')
@@ -728,5 +773,9 @@ program.command('connect')
     }
   });
 
+=======
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 // ---------------------------------------------------------------------------
 program.parse();

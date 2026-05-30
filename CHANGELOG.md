@@ -4,6 +4,7 @@ All notable changes to SENTINEL are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+<<<<<<< HEAD
 ## [0.3.0] — The Shield Release
 
 v0.2.0 made the agent safer from the inside. v0.3.0 moves safety **out-of-band**:
@@ -77,6 +78,8 @@ true WASM memory isolation for the sandbox, PDF rendering of compliance reports
 (weasyprint/pandoc), PyPI publishing of the Python SDK, and a D3 force-directed
 trust graph for the dashboard.
 
+=======
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 ## [0.2.0]
 
 The agent-safety release. v0.1.0 shipped a controlled-execution kernel

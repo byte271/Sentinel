@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 // ---------------------------------------------------------------------------
+<<<<<<< HEAD
 // sentinel-compliance — Compliance profile generator
 // ---------------------------------------------------------------------------
 // Generates auditor-ready compliance reports against:
@@ -13,6 +14,22 @@
 //   sentinel-compliance --framework owasp-asi
 //   sentinel-compliance --framework nist-ai-rmf --format json --output report.json
 //   sentinel-compliance --framework eu-ai-act --format markdown --output report.md
+=======
+// sentinel-compliance — Compliance profile generator (Features 8 & 9)
+// ---------------------------------------------------------------------------
+// Generates auditor-ready compliance reports against:
+//   - owasp-asi    : OWASP ASI Top-10 coverage dashboard (Feature 8)
+//   - nist-ai-rmf  : NIST AI RMF 1.0 profile (Feature 9)
+//
+// Output as a text dashboard, JSON (for pipelines / API), or Markdown (which a
+// downstream tool such as pandoc/wkhtmltopdf can render to the PDF that the
+// spec describes). Keeping rendering pluggable avoids shipping a heavyweight,
+// unaudited PDF engine inside the security library itself.
+//
+//   sentinel-compliance --framework owasp-asi
+//   sentinel-compliance --framework nist-ai-rmf --format json --output report.json
+//   sentinel-compliance --framework nist-ai-rmf --format markdown --output report.md
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 // ---------------------------------------------------------------------------
 
 import { Command } from 'commander';
@@ -23,9 +40,14 @@ import {
   OwaspAsiAssessor,
   DEFAULT_CAPABILITIES,
   NistComplianceProfile,
+<<<<<<< HEAD
   EuAiActAssessor,
 } from '../index.js';
 import type { AsiAssessment, ComplianceEvidence, NistComplianceReport, EuAiActReport } from '../index.js';
+=======
+} from '../index.js';
+import type { AsiAssessment, ComplianceEvidence, NistComplianceReport } from '../index.js';
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 type Format = 'text' | 'json' | 'markdown';
 
@@ -111,9 +133,15 @@ function emit(content: string, output: string | undefined, label: string): void 
 const program = new Command();
 program
   .name('sentinel-compliance')
+<<<<<<< HEAD
   .description('Generate OWASP ASI / NIST AI RMF / EU AI Act compliance reports')
   .version(SENTINEL_VERSION)
   .option('-f, --framework <name>', 'Framework: owasp-asi | nist-ai-rmf | eu-ai-act', 'owasp-asi')
+=======
+  .description('Generate OWASP ASI / NIST AI RMF compliance reports')
+  .version(SENTINEL_VERSION)
+  .option('-f, --framework <name>', 'Framework: owasp-asi | nist-ai-rmf', 'owasp-asi')
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
   .option('--format <fmt>', 'Output format: text | json | markdown', 'text')
   .option('-o, --output <path>', 'Write report to a file instead of stdout')
   .action((opts: { framework: string; format: Format; output?: string }) => {
@@ -139,6 +167,7 @@ program
       return emit(text, opts.output, 'NIST AI RMF report');
     }
 
+<<<<<<< HEAD
     if (framework === 'eu-ai-act' || framework === 'eu') {
       const report = new EuAiActAssessor().assess(DEFAULT_CAPABILITIES);
       if (opts.format === 'json') return emit(JSON.stringify(report, null, 2), opts.output, 'EU AI Act report');
@@ -154,6 +183,9 @@ program
     }
 
     console.error(chalk.red(`Unknown framework "${opts.framework}". Use owasp-asi, nist-ai-rmf, or eu-ai-act.`));
+=======
+    console.error(chalk.red(`Unknown framework "${opts.framework}". Use owasp-asi or nist-ai-rmf.`));
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
     process.exitCode = 1;
   });
 

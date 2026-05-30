@@ -11,6 +11,7 @@ git clone <your-fork-url>
 cd sentinel
 npm install
 npm run build   # tsc — must produce no type errors
+<<<<<<< HEAD
 npm test        # vitest — all tests must pass (currently 274)
 ```
 
@@ -20,13 +21,19 @@ For the Python SDK and LangChain plugin (in `python/`):
 cd python
 pip install -e ".[test]"
 PYTHONPATH=src pytest   # 27 tests; the cross-language test needs `npm run build` first
+=======
+npm test        # vitest — all tests must pass (currently 214)
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 ```
 
 Requirements:
 
 - **Node.js 18+** (uses the built-in `crypto` and ES modules).
 - **TypeScript 5.6+** (installed as a dev dependency).
+<<<<<<< HEAD
 - **Python 3.9+** (only for the Python SDK / LangChain plugin).
+=======
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 ## Project Layout
 
@@ -67,6 +74,7 @@ public surface, and every public export is also re-exported from the top-level
 
 ## Testing
 
+<<<<<<< HEAD
 - **TypeScript:** [Vitest](https://vitest.dev/). Run all tests with `npm test`, or
   a single file with `npx vitest run tests/<name>.test.ts`.
 - **Python:** [pytest](https://pytest.org/) under `python/`. The unit suite uses a
@@ -78,6 +86,14 @@ public surface, and every public export is also re-exported from the top-level
 - Cover the security-relevant paths: tampering detection, replay/nonce rejection,
   permission-escalation rejection, graceful-vs-hard kill behavior, Shield token
   revocation, and sandbox snapshot integrity.
+=======
+- Framework: [Vitest](https://vitest.dev/). Run all tests with `npm test`, or a
+  single file with `npx vitest run tests/<name>.test.ts`.
+- Tests must be deterministic — no reliance on wall-clock timing or network.
+  Pass explicit timestamps and injected generators where a module supports them.
+- Cover the security-relevant paths: tampering detection, replay/nonce rejection,
+  permission-escalation rejection, and graceful-vs-hard kill behavior.
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 ## Commit & PR Guidelines
 

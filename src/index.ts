@@ -48,6 +48,10 @@ export { PipelineEngine } from './exec/pipeline.js';
 export type { PipelineKernel } from './exec/pipeline.js';
 export { TemporalBranchEngine } from './exec/temporal.js';
 export type { PlanBuilder, TemporalStateProvider } from './exec/temporal.js';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 export { KillSwitch, AgentSession } from './exec/killswitch.js';
 export type {
   KillMode,
@@ -58,6 +62,11 @@ export type {
   KillOptions,
   CompensationRecord,
 } from './exec/killswitch.js';
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 // ---------------------------------------------------------------------------
 // Trace & Audit
@@ -70,6 +79,10 @@ export { MerkleChain } from './trace/merkle.js';
 // ---------------------------------------------------------------------------
 export { StateManager } from './info/state.js';
 export { DriftDetector } from './info/drift.js';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 export { ContextGuardian } from './info/context.js';
 export type {
   ContextChunk,
@@ -77,6 +90,11 @@ export type {
   ContextSource,
   ContextGuardianOptions,
 } from './info/context.js';
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 // ---------------------------------------------------------------------------
 // Magic
@@ -93,8 +111,16 @@ export { SpecManager, SENTINEL_VERSION, SENTINEL_PROTOCOL_VERSION } from './spec
 // ---------------------------------------------------------------------------
 export { ApiLayer } from './api/transport.js';
 export { HttpServer } from './api/server.js';
+<<<<<<< HEAD
 export type { ServerConfig, AuthConfig, SentinelServices } from './api/server.js';
 export { TokenManager, defaultTokenPath } from './api/token.js';
+=======
+<<<<<<< HEAD
+export type { ServerConfig, AuthConfig, SentinelServices } from './api/server.js';
+export { TokenManager, defaultTokenPath } from './api/token.js';
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 // ---------------------------------------------------------------------------
 // Adapters
@@ -123,6 +149,10 @@ export type {
   EvidenceSources,
   EvidenceOverrides,
 } from './compliance/index.js';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 export { OwaspAsiAssessor, ASI_RISKS, DEFAULT_CAPABILITIES } from './compliance/index.js';
 export type {
   Capability,
@@ -131,6 +161,7 @@ export type {
   AsiRiskResult,
   AsiAssessment,
 } from './compliance/index.js';
+<<<<<<< HEAD
 export { EuAiActAssessor } from './compliance/index.js';
 export type {
   AiActRiskTier,
@@ -140,6 +171,10 @@ export type {
   EuAiActReport,
   EuAiActOptions,
 } from './compliance/index.js';
+=======
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 // ---------------------------------------------------------------------------
 // A2A Safety Bridge
@@ -153,6 +188,10 @@ export type {
   A2ABridgeOptions,
   BridgeKernel,
 } from './bridge/index.js';
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 export { OpenClawMemoryGuard } from './bridge/index.js';
 export type { IntegrityCheck, OpenClawBridgeOptions } from './bridge/index.js';
 export { TrustGraph } from './bridge/index.js';
@@ -218,6 +257,7 @@ export type {
 // ---------------------------------------------------------------------------
 export { renderPreventedFutures } from './tui/index.js';
 export type { PreventedAction, PreventedVerdict, PreventedFuturesData } from './tui/index.js';
+<<<<<<< HEAD
 
 // ---------------------------------------------------------------------------
 // Adversarial Self-Testing — Red Team engine (v0.3.0)
@@ -258,6 +298,10 @@ export type {
   SandboxSnapshot,
   SandboxOptions,
 } from './sandbox/index.js';
+=======
+=======
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 
 // ---------------------------------------------------------------------------
 // Convenience helpers

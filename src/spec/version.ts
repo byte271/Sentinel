@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -32,6 +36,12 @@ function readPackageVersion(): string {
 }
 
 export const SENTINEL_VERSION = readPackageVersion();
+<<<<<<< HEAD
+=======
+=======
+export const SENTINEL_VERSION = '0.1.0';
+>>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
+>>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
 export const SENTINEL_PROTOCOL_VERSION = 1;
 
 export interface SpecDeclaration {
