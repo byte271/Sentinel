@@ -1,16 +1,10 @@
 {
   "name": "sentinel",
-<<<<<<< HEAD
   "version": "0.3.0",
   "description": "SENTINEL: the universal agent-safety sidecar — out-of-band Shield runtime, deterministic firewall, transactional kill switch, adversarial red-teaming, and runtime-verified EU AI Act / OWASP ASI compliance",
-=======
-<<<<<<< HEAD
   "version": "0.2.0",
-=======
   "version": "0.1.0",
->>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
   "description": "SENTINEL: AI-Operable Software Protocol — Shadow-first execution, temporal branching, and tamper-evident audit for AI actions",
->>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
   "author": "byte271",
   "repository": {
     "type": "git",
@@ -24,23 +18,17 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-<<<<<<< HEAD
     "sentinel": "dist/cli/index.js",
     "sentinel-fw": "dist/cli/fw.js",
     "sentinel-compliance": "dist/cli/compliance.js",
     "sentinel-tui": "dist/cli/tui.js",
     "sentinel-shield": "dist/cli/shield.js",
     "sentinel-redteam": "dist/cli/redteam.js"
-=======
-<<<<<<< HEAD
     "sentinel": "dist/cli/index.js",
     "sentinel-fw": "dist/cli/fw.js",
     "sentinel-compliance": "dist/cli/compliance.js",
     "sentinel-tui": "dist/cli/tui.js"
-=======
     "sentinel": "dist/cli/index.js"
->>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
->>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
   },
   "scripts": {
     "build": "tsc",
@@ -59,10 +47,6 @@
     "merkle-chain",
     "rollback",
     "policy-engine",
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
     "drift-detection",
     "nist",
     "compliance",
@@ -71,19 +55,14 @@
     "wasm",
     "deterministic",
     "firewall",
-<<<<<<< HEAD
     "multi-agent",
     "sidecar",
     "kill-switch",
     "red-team",
     "eu-ai-act",
     "sandbox"
-=======
     "multi-agent"
-=======
     "drift-detection"
->>>>>>> e550e260dcc2f57c57596854a8be22259fd660ce
->>>>>>> ac8649639ea7b180de767e25c1cc662b58f96dc7
   ],
   "license": "MIT",
   "dependencies": {
