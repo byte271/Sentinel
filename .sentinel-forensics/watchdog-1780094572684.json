@@ -1,0 +1,9 @@
+{
+  "event": "watchdog-expired",
+  "lastFedAt": 1780094572679,
+  "expiredAt": 1780094572684,
+  "windowMs": 0,
+  "revokedSessions": [],
+  "agents": [],
+  "writtenAt": "2026-05-29T22:42:52.684Z"
+}

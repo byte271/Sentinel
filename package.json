@@ -1,0 +1,69 @@
+{
+  "name": "sentinel",
+  "version": "0.3.0",
+  "description": "SENTINEL: the universal agent-safety sidecar — out-of-band Shield runtime, deterministic firewall, transactional kill switch, adversarial red-teaming, and runtime-verified EU AI Act / OWASP ASI compliance",
+  "author": "byte271",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byte271/sentinel.git"
+  },
+  "homepage": "https://github.com/byte271/sentinel#readme",
+  "bugs": {
+    "url": "https://github.com/byte271/sentinel/issues"
+  },
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "sentinel": "dist/cli/index.js",
+    "sentinel-fw": "dist/cli/fw.js",
+    "sentinel-compliance": "dist/cli/compliance.js",
+    "sentinel-tui": "dist/cli/tui.js",
+    "sentinel-shield": "dist/cli/shield.js",
+    "sentinel-redteam": "dist/cli/redteam.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli/index.js",
+    "demo": "node dist/cli/index.js demo",
+    "test": "vitest run"
+  },
+  "keywords": [
+    "ai",
+    "shadow-execution",
+    "temporal-branching",
+    "audit",
+    "safety",
+    "protocol",
+    "merkle-chain",
+    "rollback",
+    "policy-engine",
+    "drift-detection",
+    "nist",
+    "compliance",
+    "agent-safety",
+    "owasp",
+    "wasm",
+    "deterministic",
+    "firewall",
+    "multi-agent",
+    "sidecar",
+    "kill-switch",
+    "red-team",
+    "eu-ai-act",
+    "sandbox"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/uuid": "^10.0.0",
+    "typescript": "^5.6.0",
+    "vitest": "^4.1.0"
+  }
+}

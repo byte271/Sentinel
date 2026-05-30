@@ -1,0 +1,33 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sentinel-shield"
+version = "0.3.0"
+description = "Python SDK for the SENTINEL Shield — connect any Python agent to the out-of-band agent-safety sidecar."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Sentinel" }]
+keywords = ["ai", "agent", "safety", "shield", "firewall", "sidecar", "security"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Security",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-asyncio>=0.21"]
+
+[project.urls]
+Homepage = "https://github.com/byte271/sentinel"
+Documentation = "https://github.com/byte271/sentinel/blob/main/docs/python-sdk.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sentinel_shield", "src/sentinel_langchain"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SENTINEL — Enterprise Dashboard</title>
+  <style>
+    :root {
+      --bg: #0b0e14; --panel: #131822; --border: #232b3a; --text: #e6edf3;
+      --dim: #8b98a9; --green: #3fb950; --yellow: #d29922; --red: #f85149;
+      --cyan: #39c5cf; --accent: #6e7bff;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text);
+      font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    header { padding: 16px 24px; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between; }
+    header h1 { font-size: 18px; margin: 0; letter-spacing: 2px; }
+    header .ver { color: var(--dim); font-size: 12px; }
+    .status-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      margin-right: 6px; vertical-align: middle; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px; padding: 24px; }
+    .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px; }
+    .card h2 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--dim); margin: 0 0 12px; }
+    .big { font-size: 34px; font-weight: 700; }
+    .row { display: flex; justify-content: space-between; padding: 4px 0; }
+    .muted { color: var(--dim); }
+    .bar { height: 8px; border-radius: 4px; background: var(--border); overflow: hidden; margin-top: 6px; }
+    .bar > span { display: block; height: 100%; background: var(--green); }
+    .pill { padding: 2px 8px; border-radius: 999px; font-size: 11px; }
+    .armed { background: rgba(63,185,80,.15); color: var(--green); }
+    .fired { background: rgba(248,81,73,.15); color: var(--red); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--border); font-size: 13px; }
+    th { color: var(--dim); font-weight: 500; }
+    button.kill { background: var(--red); color: #fff; border: 0; border-radius: 6px;
+      padding: 4px 10px; cursor: pointer; font: inherit; font-size: 12px; }
+    button.kill:hover { opacity: .85; }
+    .countdown { font-size: 28px; font-weight: 700; color: var(--yellow); }
+    footer { color: var(--dim); padding: 12px 24px; font-size: 12px; border-top: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛡 SENTINEL <span class="ver" id="ver"></span></h1>
+    <div><span class="status-dot" id="dot"></span><span id="conn">connecting…</span></div>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Kill Switch</h2>
+      <div class="big"><span class="pill" id="killState">—</span></div>
+      <div class="muted" id="policy" style="margin-top:8px"></div>
+    </div>
+
+    <div class="card">
+      <h2>Firewall Activity</h2>
+      <div class="row"><span>Allowed</span><span id="allowed" style="color:var(--green)">0</span></div>
+      <div class="row"><span>Warned</span><span id="warned" style="color:var(--yellow)">0</span></div>
+      <div class="row"><span>Blocked</span><span id="blocked" style="color:var(--red)">0</span></div>
+    </div>
+
+    <div class="card">
+      <h2>OWASP ASI Top-10</h2>
+      <div class="big" id="owaspScore">—</div>
+      <div class="muted"><span id="owaspCovered">0</span>/<span id="owaspTotal">10</span> fully covered · grade <span id="owaspGrade">—</span></div>
+      <div class="bar"><span id="owaspBar" style="width:0%"></span></div>
+    </div>
+
+    <div class="card">
+      <h2>EU AI Act — Enforcement Countdown</h2>
+      <div class="countdown"><span id="euDays">—</span> days</div>
+      <div class="muted">to 2026-08-02 · tier: <span id="euTier">—</span></div>
+      <div class="row" style="margin-top:8px"><span>Annex IV readiness</span><span id="euReady">—</span></div>
+      <div class="bar"><span id="euBar" style="width:0%"></span></div>
+    </div>
+
+    <div class="card" style="grid-column: 1 / -1">
+      <h2>Connected Agents</h2>
+      <table>
+        <thead><tr><th>Agent</th><th>Status</th><th>Operations</th><th></th></tr></thead>
+        <tbody id="agents"><tr><td colspan="4" class="muted">No agents connected.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>
+    Polling <code>/api/status</code> every 2s · last update <span id="updated">—</span> ·
+    Trust-graph (D3) &amp; PDF export are documented extension points.
+  </footer>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    async function kill(agent) {
+      if (!confirm('Fire the kill switch for "' + agent + '"? This sends SIGKILL.')) return;
+      try {
+        await fetch('/api/kill', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ agent, reason: 'dashboard-operator' }),
+        });
+        refresh();
+      } catch (e) { alert('Kill failed: ' + e.message); }
+    }
+
+    async function refresh() {
+      try {
+        const r = await fetch('/api/status');
+        const s = await r.json();
+        $('dot').style.background = 'var(--green)';
+        $('conn').textContent = 'live';
+        $('ver').textContent = 'v' + s.shieldVersion;
+        $('policy').textContent = 'policy: ' + s.policy + ' · uptime ' + (s.uptimeMs / 1000).toFixed(0) + 's';
+
+        const armed = s.killSwitch === 'armed';
+        const ks = $('killState');
+        ks.textContent = armed ? 'ARMED' : 'FIRED';
+        ks.className = 'pill ' + (armed ? 'armed' : 'fired');
+
+        $('allowed').textContent = s.stats.allowed;
+        $('warned').textContent = s.stats.warned;
+        $('blocked').textContent = s.stats.blocked;
+
+        $('owaspScore').textContent = s.owasp.score + '/100';
+        $('owaspCovered').textContent = s.owasp.fullyCovered;
+        $('owaspTotal').textContent = s.owasp.total;
+        $('owaspGrade').textContent = s.owasp.grade;
+        $('owaspBar').style.width = s.owasp.score + '%';
+
+        $('euDays').textContent = s.euAiAct.daysUntilEnforcement;
+        $('euTier').textContent = s.euAiAct.riskTier;
+        $('euReady').textContent = s.euAiAct.annexIVScore + '% (' + s.euAiAct.readiness + ')';
+        $('euBar').style.width = s.euAiAct.annexIVScore + '%';
+
+        const tbody = $('agents');
+        if (s.agents.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" class="muted">No agents connected.</td></tr>';
+        } else {
+          tbody.innerHTML = s.agents.map((a) =>
+            '<tr><td>' + a.agent + '</td><td>' + a.status + '</td><td>' + a.operations +
+            '</td><td><button class="kill" onclick="kill(\'' + a.agent + '\')">KILL</button></td></tr>'
+          ).join('');
+        }
+        $('updated').textContent = new Date().toLocaleTimeString();
+      } catch (e) {
+        $('dot').style.background = 'var(--red)';
+        $('conn').textContent = 'disconnected';
+      }
+    }
+
+    refresh();
+    setInterval(refresh, 2000);
+  </script>
+</body>
+</html>
